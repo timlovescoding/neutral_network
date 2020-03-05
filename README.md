@@ -21,7 +21,7 @@ An issue with just using this equation (Y=Wx+b) is that it is only a linear equa
 To resolve this issue, we will take the node output value (Y) and put it into an **activation function** which gives us f(Y) for f is the activation function. There are many activation functions that we can look into but let's put our focus on the Sigmoid and ReLu function as it is most popularly used.
 
 
-I found a visualization to aid the explanation, please head to the author's article !(HERE)[https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250or more information] for more information if needed:
+I found a visualization to aid the explanation, please head to the author's article [HERE](https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250or more information) for more information if needed:
 
 **add gif**
 
