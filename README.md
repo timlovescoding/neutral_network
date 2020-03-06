@@ -16,12 +16,13 @@ As shown in the image, the NN architecture consist of the **input, hidden and ou
 
 A node is connected to another node by a very simple and familiar equation (Y = MX + C). In the case of NN, the notations for the equation is **Y = Wx + b**  where  Y = Output, W= Weights, x=Input, b= Bias. Value of the node is multiplied by the weight value and then added with the bias value to produce a output value (Y) to be used for the connecting node. **Refer to code: , **
 
-An issue with just using this equation (Y=Wx+b) is that it is only a linear equation which means that the NN unable to learn non-linear representation. NN is appealing in the first place because of the ability to extract information in non-linear patterns and **Tim: add universal approxmiation with non linear here?**.
+An issue with just using this equation (Y=Wx+b) is that it is only a linear equation which means that the NN unable to learn non-linear representation. NN is appealing in the first place because of the ability to extract information in non-linear patterns by approximating any continuous function with the presence of hidden layers.
 
-To resolve this issue, we will take the node output value (Y) and put it into an **activation function** which gives us f(Y) for f is the activation function. There are many activation functions that we can look into but let's put our focus on the Sigmoid and ReLu function as it is most popularly used.
+To resolve this issue of needing non-linearity, we will take the node output value (Y) and put it into an **activation function** which gives us f(Y) for f is the activation function. There are many activation functions that we can look into but let's put our focus on the Sigmoid and ReLu function as it is most popularly used.
 
 
-I found a visualization to aid the explanation, please head to the author's article [HERE](https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250or more information) for more information if needed:
+
+I found a visualization to aid the explanation, please head to the author's article [HERE](https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250) for more information if needed:
 
 **add gif**
 
@@ -57,14 +58,14 @@ To minimise the cost function, parameters of Weight (W) and Bias(b) of every con
 
 Gradient descent is a process where the gradient of the cost function is used to provide the direction and magnitude in search of the local/global minimum. In the context of the NN architecture, the gradient of the weights and biases are computed and used to minimise the loss function. 
 
-*Formula:
+*Add Formula:
 
-*Code implementation:
+*Add Code implementation:
 
 
 ## Backpropogation (How are the gradients computed?)
 
-
+*Add Formula for those you used in your implementation and show how it is derived (later put onto latex for FYP report)
 
 
 ## Summary
@@ -76,6 +77,10 @@ The 4 important parts to building a neural network are:
 3. Backpropagation -Computation of equations of gradients for W and b.
 4. Gradient Descent -Gradients of W and b is used in gradient descent to tune the parameters W and b to optimized the loss function.
 
+
+## Extra (Great learning resources and things I find interesting)
+
+1. Interesting example on the importance of hidden layers to approximate the functions governing the logic of XOR gate, [HERE](https://medium.com/@jayeshbahire/the-xor-problem-in-neural-networks-50006411840b). This also provides insight on why we will want to make the layer deeper sometimes to better approximate representation(continuous functions).
 
 # Let's use it!
 
