@@ -2,7 +2,7 @@
 
 The purpose of this project is to gain a strong foundation on Neural Networks (NN) which are the building blocks of Artificial Intelligence. By coding Neural Networks from scratch, a better understanding of the intricacies of NN will be gained. High level API such as Tensorflow and PyTorch will then be easily understood when needed to be use and further research to improve established frameworks can be made.
 
-In this document, I will try my very best to run through every part of NN and also point you to the implementation in codes.
+In this document, I will try my very best to run through every part of NN and also point you to the implementation in Python.
 
 ## Introduction to Neural Network (NN)
 
@@ -33,18 +33,52 @@ I found a visualization to aid the explanation, please head to the author's arti
 
 The values for the weights (W) and biases (b) of the connections can be initialized through a few different methods:
 
-**Research more than just xavier((
+**Research more than just xavier initialization (the one being implemented)
 
 The network of moving and computing values from one node to the next node in another layer in a forward direction only is called a **Feedforward Network**. The process of computing f(Wx+b) is known as forward propagation as values are computed and propagated forward to reach the output nodes.
 
 
+## Loss Function (How does the NN learn?)
+
+As previously mentioned, the values of the output nodes are compared to the ground truth data which is done through a loss function. The loss function is set up in a way to provide a goal for the network to acheive. The loss function will be optimized according to the set-up of the goal such as getting the output values close to ground truth value (minimising error). In the case of NN, a cross-entropy cost function can be used: 
+
+Notations: y_hat = predicted output from output nodes , y = ground truth
+
+Cost Function = - y log (y_hat)  -  (1-y) log (1-y_hat) 
+
+Intuition:  a) If y = 1, Loss = -log(y_hat)     *Higher y_hat, produces lower value(error)*
+
+            b) If y = 0, Loss = -log(1-y_hat)  *Lower y_hat, produces lower value(error)*
+
+To minimise the cost function, parameters of Weight (W) and Bias(b) of every connection will be changed in search for the global/local minimum of the loss function by a process known as gradient descent. In other words, the error between the output (y_hat) and ground truth (y) is minimized by tuning the parameters of W and b.
 
 
-## Cost Function
+## Gradient Descent (How is the cost function minimised?)
+
+Gradient descent is a process where the gradient of the cost function is used to provide the direction and magnitude in search of the local/global minimum. In the context of the NN architecture, the gradient of the weights and biases are computed and used to minimise the loss function. 
+
+*Formula:
+
+*Code implementation:
 
 
- 2. Cost function
- 3. Backpropogation (Computing equations of gradients)
- 4. Gradient Descent 
- 5. Optimization
+## Backpropogation (How are the gradients computed?)
+
+
+
+
+## Summary
+
+The 4 important parts to building a neural network are:
+
+1. Forward Propagation - Initialising values of weights (W) and biases (b). Propagating the values of nodes from one layer to another by the combination of linear function and non-linear activation functions ( f(Wx+b) )
+2. Loss Function  -Setting up a loss function to provide an objective to be optimized.
+3. Backpropagation -Computation of equations of gradients for W and b.
+4. Gradient Descent -Gradients of W and b is used in gradient descent to tune the parameters W and b to optimized the loss function.
+
+
+# Let's use it!
+
+
+
 
