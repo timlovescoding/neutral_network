@@ -12,6 +12,9 @@ The human brain consist of billions of interconnected neurons receiving and tran
 
 ## Neural Network Architecture
 
+
+![nn](NN_Architecture.png)
+
 As shown in the image, the NN architecture consist of the **input, hidden and output layers**. All of these layers consist of multiple nodes which are connected to other nodes. Each nodes will consist of numeric value. Note that each layer for NN has 1D vector of nodes so any 2D and above data will be required to be flatten/reshape into the 1D space of numbers to be fed into the NN. The amount of nodes in the input layer follows the input data. Hidden layers are the layers connecting the input layer to the output layer. We have the flexibility to choose as many hidden layers as we want and vary the amount of nodes in each hidden layers as we see fit. The output layer nodes consist of values which we used to compared to the ground truth of our data for learning. This section provides you with more questions than answers about NN which is intended. Let's keep going by asking questions!
 
 #### How are the nodes connected (what are the black lines)?
@@ -24,13 +27,14 @@ NN is appealing in the first place because of the ability to approximate most co
 
 There are many activation functions that we can look into but let's put our focus on the two popular activation functions which are Sigmoid and ReLu functions:
 
-*insert image here
+![activation](activation_function.png)
 
-Given that our activation is f(Y), the value of the output (Y) is feed into the activation function to produces the **final value of the connecting node*
+Given that our activation is f(Y), the value of the output (Y) is feed into the activation function to produces the **final value of the connecting node**. Example for Sigmoid activation function, Value of connecting node = 1/(1+e^-(Wx+b)).
 
 I found a very helpful visualization to aid the explanation, please head to the author's article [HERE](https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250) for more information if needed:
 
-**add gif**
+
+![gif_demo1](visualization.gif)
 
 The network of moving and computing values from one node to the next node in another layer in a forward direction only is called a **Feedforward Network**. The process of computing f(Wx+b) is known as **Forward propagation** as values are computed and propagated forward to reach the output nodes.
 
