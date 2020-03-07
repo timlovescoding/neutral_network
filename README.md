@@ -71,7 +71,7 @@ To minimise the cost function, parameters of Weight (W) and Bias(b) of every con
 
 Gradient descent is a process where the gradient of the cost function is used to provide the direction and magnitude in search of the local/global minimum. In the context of the NN architecture, the gradient of the weights and biases are computed via **backpropogation** to be used to minimise the loss function.
 
-[gradient](pics/gradient_descent.png)
+![gradient](pics/gradient_descent.png)
 
 The updated weights (W_new) and biases (b_new) are obtained by:
 
