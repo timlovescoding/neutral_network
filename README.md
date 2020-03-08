@@ -19,9 +19,9 @@ As shown in the image, the NN architecture consist of the **input, hidden and ou
 
 #### How are the nodes connected (what are the black lines)?
 
-A node is connected to another node by a very simple and familiar equation (Y = MX + C). In the case of NN, the notations for the equation is **Y = Wx + b**  where  Y = Output, W= Weights, x=Input, b= Bias. Value of the node is multiplied by the weight value and then added with the bias value to produce a output value (Y) to be used for the connecting node. **Refer to code: , **
+A node is connected to another node by a very simple and familiar equation (Y = MX + C). In the case of NN, the notations for the equation is **Z = Wx + b**  where  Z = Output, W= Weights, x=Input, b= Bias. Value of the node is multiplied by the weight value and then added with the bias value to produce a output value (Z) to be used for the connecting node. **Refer to code: , **
 
-An issue with just using this equation (Y=Wx+b) is that it is only a linear equation which means that the NN unable to learn non-linear representation. To resolve this issue of needing non-linearity, we will take the node output value (Y) and put it into an **activation function** which gives us f(Y) for f is the activation function. An activation function provides non-linear mapping from input value to output.
+An issue with just using this equation (Z = Wx+b) is that it is only a linear equation which means that the NN unable to learn non-linear representation. To resolve this issue of needing non-linearity, we will take the node output value (Z) and put it into an **activation function** which gives us A = f(Z) for A is the activation function and z is the value of the node. An activation function provides non-linear mapping from input value to output.
 
 NN is appealing in the first place because of the ability to approximate most continuous function accuractely. A feedforward NN with even a single hidden layer containing finite number of nodes and arbitrary activation function are universal approximators according to the universal approximation theorem. Read about approximation in this paper, [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.101.2647&rep=rep1&type=pdf).
 
@@ -29,7 +29,7 @@ There are many activation functions that we can look into but let's put our focu
 
 ![activation](pics/activation_function.png)
 
-Given that our activation is f(Y), the value of the output (Y) is feed into the activation function to produces the **final value of the connecting node**. Example for Sigmoid activation function, Value of connecting node = 1/(1+e^-(Wx+b)).
+Given that our activation is A = f(Z), the value of the linear output (Z) is feed into the activation function f to produces the **final value of the connecting node (A)**. Example for usage of Sigmoid activation function, A = 1/(1+e^-(Wx+b)).
 
 I found a very helpful visualization to aid the explanation, please head to the author's article [HERE](https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250) for more information if needed:
 
@@ -57,14 +57,14 @@ In Xavier Initialization, every weights of the layers are picked randomly from a
 
 As previously mentioned, the values of the output nodes are compared to the ground truth data which is done through a loss function. The loss function is set up in a way to provide a goal for the network to acheive. The loss function will be optimized according to the set-up of the goal such as getting the output values close to ground truth value (minimising error). In the case of NN, a cross-entropy cost function can be used: 
 
-Notations: y_hat = predicted output from output nodes , y = ground truth
+**Notations: A = predicted output from output nodes , y = ground truth **
 
-Cost Function = - y log (y_hat)  -  (1-y) log (1-y_hat) 
+Loss Function (L) = - y log (A)  -  (1-y) log (1-A) 
 
-Intuition:  a) If y = 1, Loss = -log(y_hat)     *Higher y_hat, produces lower value(error)*
-            b) If y = 0, Loss = -log(1-y_hat) *Lower y_hat, produces lower value(error)*
+Intuition:  a) If y = 1, L = -log(A)     *Higher A, produces lower value(error)*
+            b) If y = 0, L = -log(1-A)   *Lower A, produces lower value(error)*
 
-To minimise the cost function, parameters of Weight (W) and Bias(b) of every connection will be changed in search for the global/local minimum of the loss function by a process known as gradient descent. In other words, the error between the output (y_hat) and ground truth (y) is minimized by tuning the parameters of W and b.
+To minimise the cost function, parameters of Weight (W) and Bias(b) of every connection will be changed in search for the global/local minimum of the loss function by a process known as gradient descent. In other words, the error between the output (A) and ground truth (y) is minimized by tuning the parameters of W and b.
 
 
 ## Gradient Descent (How is the cost function minimised?)
@@ -86,13 +86,22 @@ Note that there are many ways to improve the process of gradient descent through
 
 Gradient descent optimization techniques such as RMSprop takes away the need to tune learning rate by incorporating it in its algorithm. The heuristics for auto-tuning the learning rate is such that when it is heading near the minima, it will decrease the learning rate to prevent overshoots. Further read about optimization techniques, [here](https://blog.paperspace.com/intro-to-optimization-momentum-rmsprop-adam/).
 
-## Backpropogation (How are the gradients computed?)
+## Backpropogation (How are the derivatives/gradients computed?)
 
-If you are using a deep learning frameworks such as TensorFlor and PyTorch, the gradients of the loss function with respect to the weight and bias parameters is computed via a symbolic solver. This means that you will not need to derive the equations yourself, all you have to do is to set up the loss function and the framework libraries does the rest.
+The goal of backpropagation is to compute the partial derivatives ∂L/∂w and ∂L/∂b of the loss function (L) with respect to any weight w or bias b **throughout the entire network**. Read about partial derivatives over at [wikipedia](https://en.wikipedia.org/wiki/Partial_derivative) if you are not familiar.
 
-With that being said, an understanding for the derivation of gradients is very interesting to learn and gives you an appreciation for calculus. 
+If you are using a deep learning frameworks such as TensorFlor and PyTorch, all of the partial derivatives of the loss function with respect to the weight and bias parameters  is computed via a symbolic solver. This means that you will not need to derive the equations yourself, all you have to do is to set up the loss function and the framework libraries does the rest.
 
-Following the implementation of the code, the loss function used for the output node in this case was a Sigmoid Function. To find the gradients, we will be using chain rule (learn the basic [here](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/v/chain-rule-introduction) if you are not familiar with chain rule). We can utilise chain rule to figure out the derivatives of every single weights and biases throughout the entire network by backtracking all of the connecting nodes that has contributed to the value of the output node.
+With that being said, an understanding for the derivation is very interesting to learn and gives you an appreciation for calculus. 
+
+From the loss equation, we can see that L is a function of ground truth (y) and output node (A), L(y,A). A is the function of Z and Z is a function of W and b as: A = f(Z) = f(Wx+b). Thus, there are 4 main partial derivatives to find namely ∂L/∂w,∂L/∂b,∂L/∂A and ∂L/∂Z. The partial derivatives involved are the parameters in the loss function with respect to each parameter indivually. In code implementation, we use the cross-entropy loss function, L = - y log (A)  -  (1-y) log (1-y_hat).
+
+We will be using chain rule (learn the basic [here](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/v/chain-rule-introduction) if you are not familiar with chain rule) to figure out the partial derivatives **throughout the entire network** by backtracking all of the parameters in the connecting nodes that has contributed to the loss function (L) starting with the final output node value (A). Note that it is throughout the entire network as every connecting nodes has its own parameters.
+
+--insert latex code
+
+
+
 
 
 **Fantastic videos to learn about backpropagation, [1](https://www.youtube.com/watch?v=Ilg3gGewQ5U) and [2](https://www.youtube.com/watch?v=tIeHLnjs5U8).**
@@ -116,6 +125,7 @@ The 5 important parts to building a neural network are:
 3. Deep Learning Specialization by deeplearning.ai on Coursera, [HERE]().
 4. FastAI Lectures Series, [HERE](https://course.fast.ai/)
 5. Interesting read on ImageNet, [HERE](https://qz.com/1034972/the-data-that-changed-the-direction-of-ai-research-and-possibly-the-world/)
+6. Read more about Backpropgation Algorithm,[HERE](http://neuralnetworksanddeeplearning.com/chap2.html)
 
 # Let's use it!
 
