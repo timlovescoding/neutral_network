@@ -22,6 +22,7 @@ def initialise_parameters(layer_dims): # initialising forward propagation values
     L = len(layer_dims) # Number of layers wanted from neural network
 
     for i in range(1,L): #Note: Range does not take upper bound number (which is what we want as input layer is not part of the hidden layer)
+
         # Number of hidden layers = Number of weight and bias matrix needed
 
         parameters["W" + str(i)] =  np.random.randn(layers_dims[i], layers_dims[i-1]) / np.sqrt(layers_dims[i-1] )   # Weight Matrix
@@ -32,9 +33,30 @@ def initialise_parameters(layer_dims): # initialising forward propagation values
 
 #  STEP 2: Forward Propagation:........................................................................
 
+
+
+def forward_propagate(X, parameters):
+
+    caches = [] #Initialise empty cache (to append later on)
+    A = X # initial Activation unit is the input features
+    L = len(parameters) // 2 # Getting the length of hidden layer (Note: it is floor-ed cause indexes cannot take in float)
+
+    for i in range(1,L): #remember the last weight is not included
+
+        A_prev  =  A #Current Activation Unit value that was calculated (Starting with inputs)
+        A,cache =  forward_activation(A_prev, parameters["W"+str(i)] , parameters["B"+str(i)] , "relu") # Using ReLu Activation
+        caches.append(cache) # Add values of the variables into the list
+
+    #For last activation: use sigmoid
+
+    A_Last,cache =  forward_activation(A, parameters["W"+str(L)] , parameters["B"+str(L)] , "sigmoid") #calculating last activation unit
+    caches.append(cache) # Add values of the variables into the list
+
+    return A_Last, caches
+
+
 def sigmoid(x):  # Sigmoid Function
   return  1 / (1 + np.exp(-x))
-
 
 def forward_activation(A_prev, W , b , activation):
 
@@ -59,25 +81,6 @@ def forward_activation(A_prev, W , b , activation):
 
 
 
-def forward_propagate(X, parameters):
-
-    caches = [] #Initialise empty cache (to append later on)
-    A = X # initial Activation unit is the input features
-    L = len(parameters) // 2 # Getting the length of hidden layer (Note: it is floor-ed cause indexes cannot take in float)
-
-    for i in range(1,L): #remember the last weight is not included
-
-        A_prev  =  A #Current Activation Unit value that was calculated (Starting with inputs)
-        A,cache =  forward_activation(A_prev, parameters["W"+str(i)] , parameters["B"+str(i)] , "relu") # Using ReLu Activation
-        caches.append(cache) # Add values of the variables into the list
-
-    #For last activation: use sigmoid
-
-    A_Last,cache =  forward_activation(A, parameters["W"+str(L)] , parameters["B"+str(L)] , "sigmoid") #calculating last activation unit
-    caches.append(cache) # Add values of the variables into the list
-
-
-    return A_Last, caches
 
 
 
@@ -264,7 +267,9 @@ def predict(X,Y, parameters): # Predicting based off NN predictions
 # (3) Have fun! Try different amount of activation units and hidden layers. Try tuning the learning rate and iterations too!
 
 '''Example of code once you have your training and testing data set up.
-layers_dims = (12288,30,15,8, 1) # Neural Network
+layers_dims = (12288,30,15,8, 1) # Setting up the architecture of the Neural Network (amount of nodes per layer)
+#Note that the output layer is just 1 node because I want to use to classify just a single object.
+
 parameters =  NN_model(train_x,train_y, layers_dims, learning_rate = 0.0080, iterations = 2000 )
 accuracy_train = predict(test_x, test_y, parameters)
 '''
