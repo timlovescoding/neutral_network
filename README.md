@@ -98,11 +98,8 @@ From the loss equation, we can see that L is a function of ground truth (y) and 
 
 We will be using chain rule (learn the basic [here](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/v/chain-rule-introduction) if you are not familiar with chain rule) to figure out the partial derivatives **throughout the entire network** by backtracking all of the parameters in the connecting nodes that has contributed to the loss function (L) starting with the final output node value (A). Note that it is throughout the entire network as every connecting nodes has its own parameters.
 
---insert latex code
 
-
-
-
+![pdf](backprop.pdf)
 
 **Fantastic videos to learn about backpropagation, [1](https://www.youtube.com/watch?v=Ilg3gGewQ5U) and [2](https://www.youtube.com/watch?v=tIeHLnjs5U8).**
 
