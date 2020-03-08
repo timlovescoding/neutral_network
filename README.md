@@ -4,7 +4,7 @@ The purpose of this project is to gain a strong foundation on Neural Networks (N
 
 NN algorithms became heavily popularised for computer vision application after the 2012 ImageNet Competition where Geoffrey Hinton, Ilya Sutskever, and Alex Krizhevsky from the University of Toronto submitted a deep convolutional neural network(CNN) architecture called AlexNet which achieved a winning top-5 test error rate of 15.3% compared to 26.2% achieved by the second-best entry [Paper](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf). CNN is a variation of a NN model, the underlying concepts of NN is the same as to CNN. Thus, it is vital to understand how does a NN work. There is huge variety of types of neural network model, read more [HERE](https://www.digitalvidya.com/blog/types-of-neural-networks/). 
 
-In this document, I will try my very best to run through every part of NN and also point you to the implementation in Python.Reference to code will given, strongly advise to open up `NN_scratch.py` as you are going through the explanations. Explanations are given in the perspective of getting an overall understanding by not fussing too much about the matrices and vectors you need to set up to deal with the entire neural network calculations. On the other hand, codes shows the implementation giving you an idea on how to expand the logic explained to incorporate every part of the neural network through simple linear alegbra. ( Have not done this, will do it by 13/3)
+In this document, I will try my very best to run through every part of NN and also point you to the implementation in Python.Reference to code will given, strongly advise to open up `NN_scratch.py` as you are going through the explanations. Explanations are given in the perspective of getting an overall understanding by not fussing too much about the matrices and vectors you need to set up to deal with the entire neural network calculations. On the other hand, codes shows the implementation giving you an idea on how to expand the logic explained to incorporate every part of the neural network through simple linear alegbra. Expected knowledge in linear algebra and NumPy is required.
 
 I hope that by the end of it, the underlying concepts of neural networks will be made clear.
 
@@ -18,24 +18,24 @@ The human brain consist of billions of interconnected neurons receiving and tran
 
 ![nn](pics/NN_Architecture.png)
 
-As shown in the image, the NN architecture consist of the **input, hidden and output layers**. All of these layers consist of multiple nodes which are connected to other nodes. Each nodes will consist of numeric value. Note that each layer for NN has 1D vector of nodes so any 2D and above data will be required to be flatten/reshape into the 1D space of numbers to be fed into the NN. The amount of nodes in the input layer follows the input data. Hidden layers are the layers connecting the input layer to the output layer. We have the flexibility to choose as many hidden layers as we want and vary the amount of nodes in each hidden layers as we see fit. The output layer nodes consist of values which we used to compared to the ground truth of our data for learning. This section provides you with more questions than answers about NN which is intended. Let's keep going by asking questions!
+As shown in the image, the NN architecture consist of the **input, hidden and output layers** (refer `line 267-268`) All of these layers consist of multiple nodes which are connected to other nodes. Each nodes will consist of numeric value. Note that each layer for NN is a 1D vector of nodes so any 2D and above data will be required to be flatten/reshape into the 1D space of numbers to be fed into the NN. The amount of nodes in the input layer follows the input data. Hidden layers are the layers connecting the input layer to the output layer. We have the flexibility to choose as many hidden layers as we want and vary the amount of nodes in each hidden layers as we see fit (edit `line 267-268`). The output layer node/nodes consist of values which we used to compared to the ground truth of our data for learning. This section provided you with more questions than answers about NN which is intended. Let's keep going by asking questions!
 
 #### How are the nodes connected (what are the black lines)?
 
-A node is connected to another node by a very simple and familiar equation (Y = MX + C). In the case of NN, the notations for the equation is **Z = Wx + b**  where  Z = Output, W= Weights, x=Input, b= Bias. Value of the node is multiplied by the weight value and then added with the bias value to produce a output value (Z) to be used for the connecting node. **Refer to code: , **
+A node is connected to another node by a very simple and familiar equation (Y = MX + C). In the case of NN, the notations for the equation is **Z = Wx + b**  where  Z = Output, W= Weights, x=Input, b= Bias. Value of the node is multiplied by the weight value and then added with the bias value to produce a output value (Z) to be used for the connecting node.
 
-An issue with just using this equation (Z = Wx+b) is that it is only a linear equation which means that the NN unable to learn non-linear representation. To resolve this issue of needing non-linearity, we will take the node output value (Z) and put it into an **activation function** which gives us A = f(Z) for A is the activation function and z is the value of the node. An activation function provides non-linear mapping from input value to output.
+An issue with just using this equation (Z = Wx+b) is that it is only a linear equation which means that the NN unable to learn non-linear representation. NN is appealing in the first place because of the ability to approximate most continuous function accuractely. A feedforward NN with even a single hidden layer containing finite number of nodes and arbitrary activation function are universal approximators according to the universal approximation theorem. However, this is only possible if there are non-linear mappings within our neural network.
 
-NN is appealing in the first place because of the ability to approximate most continuous function accuractely. A feedforward NN with even a single hidden layer containing finite number of nodes and arbitrary activation function are universal approximators according to the universal approximation theorem. Read about approximation in this paper, [here](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.101.2647&rep=rep1&type=pdf).
+To resolve this issue of needing non-linearity, we will take the node output value (Z) and put it into an **activation function** which gives us A = f(Z) for A is the activation function to find the value of the next connecting node. An activation function provides non-linear mapping from input value to output (refer `line 60-79`). Note that in the code it is `Z = np.dot(W,A_prev) + b` and `A = sigmoid(Z)`, this is very important as `W`,`A_prev` and `b` are actually in the form of matrices taking into account **all of the nodes and its connection**.
 
-There are many activation functions that we can look into but let's put our focus on the two popular activation functions which are Sigmoid and ReLu functions:
+
+There are many activation functions that we can look into but let's put our focus on the two popular activation functions which are Sigmoid and ReLu functions (refer `line 66-72` to see the equation in code):
 
 ![activation](pics/activation_function.png)
 
 Given that our activation is A = f(Z), the value of the linear output (Z) is feed into the activation function f to produces the **final value of the connecting node (A)**. Example for usage of Sigmoid activation function, A = 1/(1+e^-(Wx+b)).
 
 I found a very helpful visualization to aid the explanation, please head to the author's article [HERE](https://towardsdatascience.com/forward-propagation-in-neural-networks-simplified-math-and-code-version-bbcfef6f9250) for more information if needed:
-
 
 ![gif_demo1](pics/visualization.gif)
 
@@ -55,8 +55,7 @@ The values for the weights (W) and biases (b) of the connections can be initiali
 
 Rules of thumbs to follow to prevent exploding or vanishing gradients due to initialization: a) The mean of the activations should be zero. b) The variance of the activations should stay the same across every layer.
 
-In Xavier Initialization, every weights of the layers are picked randomly from a normal distribution with mean = 0 and variance = 1/n for n is number of nodes in the previous layer. The biases are initialized with zeros. (Refer to line )
-
+In Xavier Initialization, every weights of the layers are picked randomly from a normal distribution with mean = 0 and variance = 1/n for n is number of nodes in the previous layer. The biases are initialized with zeros (refer `line 17-30` ). Looking back at the architecture of NN, we can see that each node of a previous layer is connected to **all** nodes of the next layer. Therefore, `np.random.randn(layers_dims[i], layers_dims[i-1])` is basically setting up the matrix in such a way that fulfills this concept where the rows is number of next layer nodes and the columns is the number of previous layer nodes. Example: If my input layer has 100 nodes and the next layer has 50 nodes, it will come out to be `np.random.randn(50, 100)`
 
 ## Loss Function (How does the NN learn?)
 
@@ -128,6 +127,7 @@ The 5 important parts to building a neural network are:
 4. FastAI Lectures Series, [HERE](https://course.fast.ai/)
 5. Interesting read on ImageNet, [HERE](https://qz.com/1034972/the-data-that-changed-the-direction-of-ai-research-and-possibly-the-world/)
 6. Read more about Backpropgation Algorithm,[HERE](http://neuralnetworksanddeeplearning.com/chap2.html)
+7 Read about approximation in this paper, [HERE](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.101.2647&rep=rep1&type=pdf).
 
 
 # Let's use it!
