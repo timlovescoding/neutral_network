@@ -98,9 +98,8 @@ From the loss equation, we can see that L is a function of ground truth (y) and 
 
 We will be using chain rule (learn the basic [here](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/v/chain-rule-introduction) if you are not familiar with chain rule) to figure out the partial derivatives **throughout the entire network** by backtracking all of the parameters in the connecting nodes that has contributed to the loss function (L) starting with the final output node value (A). Note that it is throughout the entire network as every connecting nodes has its own parameters.
 
-![pdf](backprop.pdf)
 
-<a href="backprop.pdf" target="_blank">PDF.</a>
+**Check out how to derive the equations used for neural network in context of the code in this <a href="backprop.pdf" target="_blank">PDF written by me.</a>**
 
 **Fantastic videos to learn about backpropagation, [1](https://www.youtube.com/watch?v=Ilg3gGewQ5U) and [2](https://www.youtube.com/watch?v=tIeHLnjs5U8).**
 
@@ -109,11 +108,11 @@ We will be using chain rule (learn the basic [here](https://www.khanacademy.org/
 
 The 5 important parts to building a neural network are:
 
-1. Initilisation of paramaters - Initialising values of weights (W) and biases (b).
-1. Forward Propagation -  Propagating the values of nodes from one layer to another by the combination of linear function and non-linear activation functions ( f(Wx+b) )
+1. Initilisation of paramaters - Initialising values of weights (W) and biases (b) for efficient training.
+1. Forward Propagation -  Propagating the values of nodes from one layer to another by the combination of linear function and non-linear activation functions (A = f(Z), Z = Wx+b where A is the output value, Z is the linear output going into the activation function, W is the weight, x is the input for input nodes) and known as A_previous for nodes of hidden layer, b is bias)
 2. Loss Function  - Setting up a loss function to provide an objective to be optimized.
-3. Backpropagation - Computation of equations of gradient for the loss function with respect to W and b.
-4. Gradient Descent with Optimization - Gradients of W and b is used in gradient descent to tune the parameters W and b to find the minima of the loss function. The process of gradient descent can be optimized with techniques such as momentum.
+3. Backpropagation - Computation of equations of gradient to find partial derivatives of the loss function with respect to W and b.
+4. Gradient Descent with Optimization - Gradients of W and b is used in gradient descent to tune the parameters W and b to find the minima of the loss function. The process of gradient descent can be optimized with techniques such as momentum and Adam.
 
 
 ## Extra (Great learning resources and things I find interesting)
@@ -125,8 +124,9 @@ The 5 important parts to building a neural network are:
 5. Interesting read on ImageNet, [HERE](https://qz.com/1034972/the-data-that-changed-the-direction-of-ai-research-and-possibly-the-world/)
 6. Read more about Backpropgation Algorithm,[HERE](http://neuralnetworksanddeeplearning.com/chap2.html)
 
+
 # Let's use it!
 
-
+Head over [**HERE**]() where I will use the neural network we just learn about and implemented to classify my favourite noodles!
 
 
