@@ -36,6 +36,8 @@ I found a very helpful visualization to aid the explanation, please head to the 
 
 ![gif_demo1](pics/visualization.gif)
 
+*Note: Notations of visualization differs from this document,  a1-a2-a3.. is notated as Z here while h1-h2-h3... is notated as A.
+
 The network of moving and computing values from one node to the next node in another layer in a forward direction only is called a **Feedforward Network**. The process of computing f(Wx+b) is known as **Forward propagation** as values are computed and propagated forward to reach the output nodes.
 
 ## Initialization of W and b values  (Before forward propagation) 
