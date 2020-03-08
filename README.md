@@ -4,7 +4,10 @@ The purpose of this project is to gain a strong foundation on Neural Networks (N
 
 NN algorithms became heavily popularised for computer vision application after the 2012 ImageNet Competition where Geoffrey Hinton, Ilya Sutskever, and Alex Krizhevsky from the University of Toronto submitted a deep convolutional neural network(CNN) architecture called AlexNet which beat the field by a whopping 10.8 percentage point margin, which was 41% better than the next best. CNN is a variation of a NN model, the underlying concepts of NN is the same as to CNN. Thus, it is vital to understand how does a NN work. There is huge variety of types of neural network model, read more [HERE](https://www.digitalvidya.com/blog/types-of-neural-networks/). 
 
-In this document, I will try my very best to run through every part of NN and also point you to the implementation in Python. I hope that by the end of it, the underlying concepts of neural networks will be made clear.
+In this document, I will try my very best to run through every part of NN and also point you to the implementation in Python.Reference to code will given, strongly advise to open up `NN_scratch.py` as you are going through the explanations. Explanations are given in the perspective of getting an overall understanding by not fussing too much about the matrices and vectors you need to set up to deal with the entire neural network calculations. On the other hand, codes shows the implementation giving you an idea on how to expand the logic explained to incorporate every part of the neural network through simple linear alegbra. ( Have not done this, will do it by 13/3)
+
+I hope that by the end of it, the underlying concepts of neural networks will be made clear.
+
 
 ## Introduction to Neural Network (NN)
 
@@ -129,6 +132,6 @@ The 5 important parts to building a neural network are:
 
 # Let's use it!
 
-Head over [**HERE**]() where I will use the neural network we just learn about and implemented to classify my favourite noodles!
+Head over [**HERE**](https://github.com/timothylimyl/image_classifier) where I will use the neural network we just learn about and implemented to classify my favourite noodles!
 
 
