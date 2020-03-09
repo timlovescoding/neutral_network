@@ -108,12 +108,12 @@ With that being said, an understanding for the derivation is very interesting to
 
 From the loss equation, we can see that L is a function of ground truth (y) and output node (A), L(y,A). A is the function of Z and Z is a function of W and b as: A = f(Z) = f(Wx+b). Thus, there are 4 main partial derivatives to find namely ∂L/∂w,∂L/∂b,∂L/∂A and ∂L/∂Z. The partial derivatives involved are the parameters in the loss function with respect to each parameter indivually. In code implementation, we use the cross-entropy loss function, L = - y log (A)  -  (1-y) log (1-y_hat).
 
-We will be using chain rule (learn the basic [here](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/v/chain-rule-introduction) if you are not familiar with chain rule) to figure out the partial derivatives **throughout the entire network** by backtracking all of the parameters in the connecting nodes that has contributed to the loss function (L) starting with the final output node value (A). Note that it is throughout the entire network as every connecting nodes has its own parameters.
+We will be using chain rule (learn the basic [here](https://www.khanacademy.org/math/ap-calculus-ab/ab-differentiation-2-new/ab-3-1a/v/chain-rule-introduction) if you are not familiar with chain rule) to figure out the partial derivatives **throughout the entire network** by backtracking all of the parameters in the connecting nodes that has contributed to the loss function (L) starting with the final output node value (A). Note that it is throughout the entire network as every connecting nodes has its own weight and bias.
 
 
-**Check out how to derive the equations used for neural network in context of the code in this <a href="backprop.pdf" target="_blank">PDF written by me.</a>**. Please open the pdf derivations and code together. (refer `line 104-146`)
+**Check out how to derive the equations used for neural network in context of the code in this <a href="backprop.pdf" target="_blank">PDF written by me.</a>**. Please open the pdf derivations and code together (refer `line 104-146`).
 
-**Fantastic videos to learn about backpropagation, [1](https://www.youtube.com/watch?v=Ilg3gGewQ5U) and [2](https://www.youtube.com/watch?v=tIeHLnjs5U8).**
+**Fantastic videos to learn the intuition behind backpropagation, [1](https://www.youtube.com/watch?v=Ilg3gGewQ5U) and [2](https://www.youtube.com/watch?v=tIeHLnjs5U8).**
 
 
 ## Summary
@@ -140,6 +140,6 @@ The 5 important parts to building a neural network are:
 
 # Let's use it!
 
-Head over [**HERE**](https://github.com/timothylimyl/image_classifier) where I will use the neural network we just learn about and implemented to classify my favourite noodles!
+Head over [**HERE**](https://github.com/timothylimyl/image_classifier) where I used the neural network we just learn about and implemented to classify my favourite noodles!
 
 
