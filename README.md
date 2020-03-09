@@ -145,6 +145,10 @@ The 5 important parts to building a neural network are:
 
 # Let's use it!
 
-Head over [**HERE**](https://github.com/timothylimyl/image_classifier) where I used the neural network we just learn about and implemented to classify my favourite noodles!
+Head over [**HERE**](https://github.com/timothylimyl/image_classifier) where I used the neural network we just learn about and implemented it to classify my favourite noodles!
+
+Other neural network related projects that I have completed:
+1. [Behavioral Cloning](https://github.com/timothylimyl/self_driving_cloning)
+2. [Benchmarking against Fashion MNIST](https://github.com/timothylimyl/FASHION-MNIST)
 
 
