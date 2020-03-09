@@ -77,7 +77,7 @@ b) If y = 0, L = -log(1-A)   (**Lower A, produces lower error value. Lower A ind
 
 Refer to the negative log function graph to cement this intuition:
 
-![negativelog](pics/negativelog.png)
+![negativelog](pics/negativelog.PNG)
             
 To minimise the loss function, parameters of Weight (W) and Bias(b) of every connection will be changed in search for the global/local minimum of the loss function by a process known as gradient descent. In other words, the error between the output (A) and ground truth (y) is minimized by tuning the parameters of W and b. This is because the value of A is affected by W and b for A = f(Wx+b).
 
