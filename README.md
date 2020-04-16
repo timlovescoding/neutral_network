@@ -132,6 +132,7 @@ The 5 important parts to building a neural network are:
 4. Backpropagation - Finding the partial derivatives of the loss function with respect to W and b for gradient descent.
 5. Gradient Descent with Optimization - Gradients of W and b is used in gradient descent to tune the parameters W and b to find the minima of the loss function. The process of gradient descent can be optimized with techniques such as momentum and Adam.
 
+**In essence, neural networks are very useful because it is an universal approximator. It consists of many stacks of differentiable non-linear functions with lots of parameters that can nearly approximate any continuous functions according to the goal set up by the cost function. The neural networks seeks to find a continuous functions (its architecture with specific weights and biases) that can take in an input and predict an output that we want.**
 
 # Extras (Great learning resources and things worth reading)
 
