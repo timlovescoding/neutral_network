@@ -1,10 +1,10 @@
 # Building and understanding a neural network from scratch
 
-The purpose of this project is to gain a strong foundation on Neural Networks (NN), a very powerful algorithm. By coding Neural Networks from scratch, a better understanding of the intricacies of NN will be gained. High level API such as TensorFlow and PyTorch will then be easily understood when needed to be use and further research to improve established frameworks can be made.
+The purpose of this project is to gain a strong foundation on Neural Networks (NN), a very powerful algorithm and idea. By coding Neural Networks from scratch, a better understanding of the intricacies of NN will be gained. High level API such as TensorFlow and PyTorch will then be easily understood when needed to be use and further research to improve established frameworks can be made.
 
 NN algorithms became heavily popularised for computer vision application after the 2012 ImageNet Competition where Geoffrey Hinton, Ilya Sutskever, and Alex Krizhevsky from the University of Toronto submitted a deep convolutional neural network(CNN) architecture called AlexNet which achieved a winning top-5 test error rate of 15.3% compared to 26.2% achieved by the second-best entry,[Paper](https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf). CNN is a variation of a NN model, the underlying concepts of NN is the same as to CNN. Thus, it is vital to understand how does a NN work. There is huge variety of types of neural network model, read more [here](https://www.digitalvidya.com/blog/types-of-neural-networks/). 
 
-In this document, I will try my best to run through every part of NN and also point you to the implementation in Python.Reference to code will given, strongly advise to open up `NN_scratch.py` as you are going through the explanations. Explanations are given in the perspective of getting an overall understanding and not fussing too much about the matrices and vectors you need to set up to deal with the entire neural network and training samples. On the other hand, the implementation in code gives you an idea on how to expand the logic explained to incorporate every part of the neural network through simple linear alegbra. Expected knowledge in linear algebra and NumPy is required.
+In this document, I will try my best to run through every part of NN and also point you to the implementation in Python. Reference to code will given, strongly advise to open up `NN_scratch.py` as you are going through the explanations. Explanations are given in the perspective of getting an overall understanding and not fussing too much about the matrices and vectors you need to set up to deal with the entire neural network and training samples. On the other hand, the implementation in code gives you an idea on how to expand the logic explained to incorporate every part of the neural network through simple linear alegbra. Expected knowledge in linear algebra and NumPy is required.
 
 I hope that by the end of it, the underlying concepts of neural networks will be made clear.
 
@@ -63,7 +63,14 @@ In Xavier Initialization, every weight of the layers are picked randomly from a 
 
 ## Loss Function (How does the NN learn?)
 
-As previously mentioned, the values of the output nodes are compared to the ground truth data which is done through a loss function. The loss function is set up in a way to provide a goal for the network to achieve. The loss function will be optimized according to the set-up of the goal such as getting the output values close to ground truth value (minimising error). In the case of NN, a cross-entropy cost function can be used: 
+As previously mentioned, the values of the output nodes are compared to the ground truth data which is done through a loss function. The loss function is set up in a way to provide a goal for the network to achieve. The loss function will be optimized according to the set-up of the goal such as getting the output values close to ground truth value (minimising error). A very basic and simple loss function is mean-squared error (MSE) give by:
+
+
+
+![mse](pics/mse.png)
+
+
+There are many variation of loss function, each set up to ensure the system penalises bad prediction by increasing the loss. For example, in classification tasks, a cross-entropy loss function is commonly used: 
 
 **Notations: A = predicted output from output nodes , y = ground truth**
 
