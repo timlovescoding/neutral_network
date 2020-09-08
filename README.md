@@ -67,7 +67,7 @@ As previously mentioned, the values of the output nodes are compared to the grou
 
 
 
-![mse](pics/mse.png)
+![mse](pics/mse.jpg)
 
 
 There are many variation of loss function, each set up to ensure the system penalises bad prediction by increasing the loss. For example, in classification tasks, a cross-entropy loss function is commonly used: 
@@ -153,7 +153,7 @@ The 5 important parts to building a neural network are:
 
 # Let's use it!
 
-Head over [**HERE**](https://github.com/timothylimyl/image_classifier) where I used the neural network we just learn about and implemented it to classify my favourite noodles!
+Head over [**HERE**](https://github.com/timothylimyl/image_classifier) where I used the neural network we just learn about and implemented it to classify my favourite noodles! 
 
 Other neural network related projects that I have completed:
 1. [Behavioral Cloning](https://github.com/timothylimyl/self_driving_cloning)
